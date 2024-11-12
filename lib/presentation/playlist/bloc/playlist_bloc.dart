@@ -7,8 +7,6 @@ part 'playlist_bloc.freezed.dart';
 
 class PlaylistBloc extends Bloc<PlaylistEvent, PlaylistState> {
   PlaylistBloc() : super(const PlaylistState.initial()) {
-    on<PlaylistEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<PlaylistEvent>((event, emit) {});
   }
 }

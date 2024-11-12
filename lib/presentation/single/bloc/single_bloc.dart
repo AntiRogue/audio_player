@@ -6,9 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:just_audio/just_audio.dart';
 
 part 'single_bloc.freezed.dart';
-
 part 'single_event.dart';
-
 part 'single_state.dart';
 
 @injectable
@@ -60,7 +58,7 @@ class SingleBloc extends Bloc<SingleEvent, SingleState> {
       ),
     ]
     ));
-    // Initialize the player with the current playlist
+
     try {
       final playlist = state.playlist;
       if (playlist.isNotEmpty) {
@@ -77,8 +75,7 @@ class SingleBloc extends Bloc<SingleEvent, SingleState> {
         emit(state.copyWith(audio: playlist.first));
       }
     } catch (e) {
-      print("Error loading audio source: $e");
-      // Optionally, handle the error state in the UI
+      // todo emit error
     }
   }
 
@@ -120,8 +117,7 @@ class SingleBloc extends Bloc<SingleEvent, SingleState> {
   Future<void> _toggleShuffle(Emitter<SingleState> emit) async {
     final shuffleEnabled = !state.shuffleEnabled;
     await player.setShuffleModeEnabled(shuffleEnabled);
-    emit(state.copyWith(
-        shuffleEnabled: shuffleEnabled)); // Emit state to update UI
+    emit(state.copyWith(shuffleEnabled: shuffleEnabled));
   }
 
   Future<void> _toggleRepeatMode(Emitter<SingleState> emit) async {
@@ -132,6 +128,6 @@ class SingleBloc extends Bloc<SingleEvent, SingleState> {
         : repeatMode == RepeatMode.repeatOne
             ? LoopMode.one
             : LoopMode.all);
-    emit(state.copyWith(repeatMode: repeatMode)); // Emit state to update UI
+    emit(state.copyWith(repeatMode: repeatMode));
   }
 }

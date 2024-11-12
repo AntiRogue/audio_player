@@ -7,14 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 @RoutePage()
 class SinglePage extends StatelessWidget {
-  // final int audioId;
+  final int audioId;
 
-  const SinglePage({super.key});
+  const SinglePage({super.key, required this.audioId});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<SingleBloc>()..add(const SingleEvent.init(0)),
+      create: (context) => getIt<SingleBloc>()..add(SingleEvent.init(audioId)),
       child: const SingleView(),
     );
   }
